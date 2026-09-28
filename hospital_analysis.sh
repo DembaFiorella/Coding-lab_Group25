@@ -29,3 +29,18 @@ process_vitals() {
 }
 
 process_vitals
+ 
+  water_audit() {
+     echo "===== WATER USAGE AUDIT ====="
+       average=$(awk -F '|' '$2 ~ /ICU_WATER_RESERVE/ {
+           gsub (/ /,"", $3)
+           sum += $3
+           count++
+       } END {
+           if (count > 0)
+             print sum / count
+           else 
+             print 0
+       }' active_logs/water_usage_log.log)
+        printf "ICU Water Reserve Average Usage: %.2f Liters/min\n" "$average"
+  }
