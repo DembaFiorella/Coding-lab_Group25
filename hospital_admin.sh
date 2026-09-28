@@ -43,7 +43,6 @@ main() {
     # 3. Print environment status with the dynamic system execution date
     echo "====================================================================="
     echo "System Environment Secured on $(date)"
-    echo ""
 }
 
 # Execute the orchestrator loop
