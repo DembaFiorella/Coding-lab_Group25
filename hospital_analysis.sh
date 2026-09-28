@@ -32,6 +32,10 @@ process_vitals
  
   water_audit() {
      echo "===== WATER USAGE AUDIT ====="
+       if [ ! -f active_logs/water_usage_log.log ]; then
+           echo "Water usage log not found."
+           return 1
+           fi
        result=$(awk -F '|' '$2 ~ /ICU_WATER_RESERVE/ {
            gsub (/ /,"", $3)
            sum += $3
